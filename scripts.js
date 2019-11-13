@@ -120,25 +120,43 @@ function checkCollision() {
 
 }
 
-var grid      = document.getElementById("game-body");
-var hammer    = new Hammer.Manager(grid);
-var swipe     = new Hammer.Swipe();
 
-hammer.add(swipe);
+var touchstartX = 0;
+var touchstartY = 0;
+var touchendX = 0;
+var touchendY = 0;
 
-hammer.on('swipeleft', function(){
-    direction = "left";
-});
+var gestureZone = document.getElementById('game-body');
 
-hammer.on('swiperight', function(){
-    direction = "right";
-});
+gestureZone.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
 
+gestureZone.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
+}, false); 
 
-hammer.on('swipeup', function(){
-    direction = "up";
-});
-
-hammer.on('swipedown', function(){
-    direction = "down";
-});
+function handleGesture() {
+    if (touchendX <= touchstartX) {
+        direction = "left";
+    }
+    
+    if (touchendX >= touchstartX) {
+        direction = "right";
+    }
+    
+    if (touchendY <= touchstartY) {
+        direction = "up";
+    }
+    
+    if (touchendY >= touchstartY) {
+        direction = "down";
+    }
+    
+    if (touchendY === touchstartY) {
+        console.log('Tap');
+    }
+}
