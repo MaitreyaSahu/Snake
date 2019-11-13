@@ -107,6 +107,7 @@ function createSegment() {
 }
 
 
+
 function checkCollision() {
     if (segment.x == theblock.x && segment.y == theblock.y) {
         createSegment();
