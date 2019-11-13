@@ -3,8 +3,33 @@ table {
 }
 
 
-td {
+#grid td {
     width: 35px;
     height: 35px;
     border: solid 1px #bbbbbb;
+}
+
+
+.black{
+  background-color: black;
+  -transition: background-color 0.3s;
+}
+
+.white{
+  background-color: white;
+  -transition: background-color 0.3s;
+}
+
+.red{
+  background-color: red;
+  transition: background-color 0.3s;
+}
+
+.controller td{
+  text-align: center;
+}
+
+.controller  i{
+  font-size: 100px;
+  color: #33bbff;
 }

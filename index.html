@@ -4,12 +4,40 @@
     <title>Snake</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>  
+    
+
 </head>
-<body>
+<body id="game-body">
     <table id="grid">
         <tbody >
         </tbody>
     </table>
+
+    <div>
+        <table class="controller">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><i class="fa fa-chevron-up"></i></td>
+                    <td></td>
+                </tr>
+                <tr>
+
+                    <td><i class="fa fa-chevron-left"></i></td>
+                    <td><i class="fa fa-pause"></i></td>
+                    <td><i class="fa fa-chevron-right"></i></td>
+                </tr>
+                <tr>
+
+                    <td></td>
+                    <td><i class="fa fa-chevron-down"></i></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script src="scripts.js"></script>
 </html>

@@ -34,12 +34,15 @@ function load() {
 function drawBlock() {
     var parent = document.getElementById("grid");
     parent.rows[theblock.y].cells[theblock.x].style.backgroundColor = "black";
+    //parent.rows[theblock.y].cells[theblock.x].classList = [];//.classList.add('black');
+    //parent.rows[theblock.y].cells[theblock.x].classList.add('black');
 }
 
 function move() {
     var parent = document.getElementById("grid");
     parent.rows[theblock.y].cells[theblock.x].style.backgroundColor = "white";
-
+    //parent.rows[theblock.y].cells[theblock.x].classList = [];//.classList.add('white');
+    //parent.rows[theblock.y].cells[theblock.x].classList.add('white');
     switch (direction) {
         case "up":
             theblock.y--;
@@ -63,6 +66,8 @@ function move() {
     }
     else{
         parent.rows[theblock.y].cells[theblock.x].style.backgroundColor = "black";
+        //parent.rows[theblock.y].cells[theblock.x].classList.remove('white');
+    //parent.rows[theblock.y].cells[theblock.x].classList.add('black');
         checkCollision();
     }
 }
@@ -70,7 +75,7 @@ function move() {
 
 function start() {
     document.onkeydown = checkKey;
-    timer = setInterval(function () { move() }, speed);
+   // timer = setInterval(function () { move(); }, speed);
 }
 
 
@@ -114,3 +119,26 @@ function checkCollision() {
     }
 
 }
+
+var grid      = document.getElementById("game-body");
+var hammer    = new Hammer.Manager(grid);
+var swipe     = new Hammer.Swipe();
+
+hammer.add(swipe);
+
+hammer.on('swipeleft', function(){
+    direction = "left";
+});
+
+hammer.on('swiperight', function(){
+    direction = "right";
+});
+
+
+hammer.on('swipeup', function(){
+    direction = "up";
+});
+
+hammer.on('swipedown', function(){
+    direction = "down";
+});
