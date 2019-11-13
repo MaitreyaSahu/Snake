@@ -32,4 +32,5 @@ table {
 .controller  i{
   font-size: 100px;
   color: #33bbff;
+  display: none;
 }
