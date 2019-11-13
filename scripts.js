@@ -100,12 +100,22 @@ function checkKey(e) {
     }
 }
 
-
-function createSegment() {
+function getRandomPosition(){
     var randomX = Math.floor(Math.random() * size);
     var randomY = Math.floor(Math.random() * size);
 
-    segment = { x: randomX, y: randomY };
+    return { x: randomX, y: randomY };
+}
+
+function createSegment() {
+    //var randomX = Math.floor(Math.random() * size);
+    //var randomY = Math.floor(Math.random() * size);
+    
+    do{
+        segment = getRandomPosition();
+    }while(segment.x == theblock.x && segment.y == theblock.y);
+
+    //segment = { x: randomX, y: randomY };
 
     var parent = document.getElementById("grid");
     parent.rows[segment.y].cells[segment.x].style.backgroundColor = "red";
