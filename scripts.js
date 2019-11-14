@@ -7,7 +7,7 @@ var speed = 300;
 
 
 $(function () {
-    var element = document.getElementsByTagName("html");
+    var element = document.getElementById("game-body");
     var mc = new Hammer(element);
     mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
     mc.on("swipeleft", function () {
