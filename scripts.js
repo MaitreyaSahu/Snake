@@ -96,7 +96,7 @@ function move() {
 
 function start() {
     document.onkeydown = checkKey;
-   // timer = setInterval(function () { move(); }, speed);
+    timer = setInterval(function () { move(); }, speed);
 }
 
 
@@ -105,18 +105,22 @@ function checkKey(e) {
 
     if (e.keyCode == '38') {
         // up arrow
+        //alert('up');
         direction = "up";
     }
     else if (e.keyCode == '40') {
         // down arrow
+        //alert('down');
         direction = "down";
     }
     else if (e.keyCode == '37') {
         // left arrow
+        //alert('left');
         direction = "left";
     }
     else if (e.keyCode == '39') {
         // right arrow
+        //alert('right');
         direction = "right";
     }
 }
