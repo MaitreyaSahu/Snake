@@ -5,8 +5,29 @@ var timer;
 var segment;
 var speed = 300;
 
-//load the game
-load();
+
+$(function () {
+    var element = document.getElementById("game-body");
+    var mc = new Hammer(element);
+    mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+    mc.on("swipeleft", function () {
+        direction = "left";        
+    });
+    mc.on("swiperight", function () {
+        direction = "right";
+    });
+    mc.on("swipeup", function () {
+        direction = "up";
+    });
+    mc.on("swipedown", function () {
+        direction = "down";
+    });
+
+
+    //load the game
+    load();
+});
+
 
 function drawGrid() {
     $("#grid tbody tr").remove();
@@ -128,45 +149,4 @@ function checkCollision() {
         createSegment();
     }
 
-}
-
-
-var touchstartX = 0;
-var touchstartY = 0;
-var touchendX = 0;
-var touchendY = 0;
-
-var gestureZone = document.getElementById('game-body');
-
-gestureZone.addEventListener('touchstart', function(event) {
-    touchstartX = event.changedTouches[0].screenX;
-    touchstartY = event.changedTouches[0].screenY;
-}, false);
-
-gestureZone.addEventListener('touchend', function(event) {
-    touchendX = event.changedTouches[0].screenX;
-    touchendY = event.changedTouches[0].screenY;
-    handleGesture();
-}, false); 
-
-function handleGesture() {
-    if (touchendX <= touchstartX) {
-        direction = "left";
-    }
-    
-    if (touchendX >= touchstartX) {
-        direction = "right";
-    }
-    
-    if (touchendY <= touchstartY) {
-        direction = "up";
-    }
-    
-    if (touchendY >= touchstartY) {
-        direction = "down";
-    }
-    
-    if (touchendY === touchstartY) {
-        console.log('Tap');
-    }
 }
