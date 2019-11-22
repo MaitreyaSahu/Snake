@@ -11,18 +11,15 @@ table {
 
 
 .black{
-  background-color: black;
-  -transition: background-color 0.3s;
+  background-color: black;  
 }
 
 .white{
-  background-color: white;
-  -transition: background-color 0.3s;
+  background-color: white;  
 }
 
 .red{
   background-color: red;
-  transition: background-color 0.3s;
 }
 
 .controller td{
