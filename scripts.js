@@ -4,7 +4,7 @@ var direction = "up";
 var prevDirection = "";
 var timer;
 var segment;
-var speed = 500;
+var speed = 300;
 
 
 $(function () {
@@ -118,7 +118,7 @@ function move() {
 
 function start() {
     document.onkeydown = checkKey;
-    //timer = setInterval(function () { move(); }, speed);
+    timer = setInterval(function () { move(); }, speed);
 }
 
 
