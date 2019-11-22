@@ -5,9 +5,12 @@ var prevDirection = "";
 var timer;
 var segment;
 var speed = 300;
+var tailX;
+var tailY;
 
 
 $(function () {
+    prevDirection = direction;
     var element = document.getElementById("game-body");
     var mc = new Hammer(element);
     mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
@@ -50,6 +53,12 @@ function drawGrid() {
 }
 
 function load() {
+    size = 10;
+    theblock = [];
+    direction = "up";
+    prevDirection = "";
+    speed = 300;
+    
     drawGrid();
     theblock = [{ x: Math.floor(size / 2), y: Math.floor(size / 2) }, { x: Math.floor(size / 2), y: Math.floor(size / 2) + 1}];
     drawBlock();
@@ -58,6 +67,7 @@ function load() {
 }
 
 function drawBlock() {
+    $('.black').removeClass('black'); 
     var parent = document.getElementById("grid");
     theblock.forEach(function (item, index) {
         //parent.rows[item.y].cells[item.x].style.backgroundColor = "black";
@@ -69,8 +79,10 @@ function drawBlock() {
 function move() {
     var parent = document.getElementById("grid");
     var tail = theblock[theblock.length - 1];
+    tailX = tail.x;
+    tailY = tail.y;
     //parent.rows[tail.y].cells[tail.x].style.backgroundColor = "white";
-    $('.black').removeClass('black'); //.addClass('white');
+    //$('.black').removeClass('black'); //.addClass('white');
     var x = 0, y = 0;
     switch (direction) {
         case "up":
@@ -101,24 +113,25 @@ function move() {
 
     //if border game over else move the block
     var head = theblock[0];
-    if (head.x >= size || head.x < 0 || head.y >= size || head.y < 0) {
+    if (head.x >= size || head.x < 0 || head.y >= size || head.y < 0|| parent.rows[head.y].cells[head.x].className == "black"){
         clearInterval(timer)
         alert("Game Over");
         load();
     }
     else {
-        drawBlock();
+        
         //parent.rows[theblock.y].cells[theblock.x].style.backgroundColor = "black";
         //parent.rows[theblock.y].cells[theblock.x].classList.remove('white');
         //parent.rows[theblock.y].cells[theblock.x].classList.add('black');
         checkCollision();
+        drawBlock();
     }
 }
 
 
 function start() {
     document.onkeydown = checkKey;
-    timer = setInterval(function () { move(); }, speed);
+    //timer = setInterval(function () { move(); }, speed);
 }
 
 
@@ -194,36 +207,37 @@ function checkCollision() {
     var head = theblock[0];
     if (segment.x == head.x && segment.y == head.y) {
         $('.red').removeClass('red');
-        createSegment();
+
         addNewBlock();
+        createSegment();
     }
 
 }
 
 function addNewBlock() {
-    var tail = theblock[theblock.length - 1];
-    var isBoundry = false;
-    var newX = tail.x;
-    var newY = tail.y;
-    switch (direction) {
-        case "up":                    
-            isBoundry = tail.x == size - 1 ? true : false;
-            newX++;
-            break;
-        case "down":
-            isBoundry = tail.x == 0 ? true : false;
-            newX--;
-            break;
-        case "right":
-            isBoundry = tail.y == 0 ? true : false;
-            newY--;
-            break;
-        case "left":
-            isBoundry = tail.y == size - 1 ? true : false;
-            newY++;
-            break;
-    }
+//    var tail = theblock[theblock.length - 1];
+//    var isBoundry = false;
+//    var newX = tail.x;
+//    var newY = tail.y;
+//    switch (direction) {
+//        case "up":                    
+//            isBoundry = tail.x == size - 1 ? true : false;
+//            newX++;
+//            break;
+//        case "down":
+//            isBoundry = tail.x == 0 ? true : false;
+//            newX--;
+//            break;
+//        case "right":
+//            isBoundry = tail.y == 0 ? true : false;
+//            newY--;
+//            break;
+//        case "left":
+//            isBoundry = tail.y == size - 1 ? true : false;
+//            newY++;
+//            break;
+//    }
 
-    theblock.push({ x: newX, y: newY });
-    drawBlock()
+    theblock.push({ x: tailX, y: tailY });
+    //drawBlock()
 }
