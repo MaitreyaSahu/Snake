@@ -131,7 +131,7 @@ function move() {
 
 function start() {
     document.onkeydown = checkKey;
-    //timer = setInterval(function () { move(); }, speed);
+    timer = setInterval(function () { move(); }, speed);
 }
 
 
@@ -161,7 +161,7 @@ function checkKey(e) {
         direction = prevDirection != "left" ? "right" : direction;
         //direction = "right";
     }
-    move();
+    //move();
 }
 
 function getRandomPosition(){
