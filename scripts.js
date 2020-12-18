@@ -1,4 +1,4 @@
-var size = 10;
+var size = 15;
 var theblock = [];
 var direction = "up";
 var prevDirection = "";
@@ -16,18 +16,22 @@ $(function () {
     mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
     mc.on("swipeleft", function () {
         //direction = "left";
+        prevDirection = direction;
         direction = prevDirection != "right" ? "left" : direction;
     });
     mc.on("swiperight", function () {
         //direction = "right";
+        prevDirection = direction;
         direction = prevDirection != "left" ? "right" : direction;
     });
     mc.on("swipeup", function () {
         //direction = "up";
+        prevDirection = direction;
         direction = prevDirection != "down" ? "up" : direction;
     });
     mc.on("swipedown", function () {
         //direction = "down";
+        prevDirection = direction;
         direction = prevDirection != "up" ? "down" : direction;
     });
 
@@ -53,7 +57,7 @@ function drawGrid() {
 }
 
 function load() {
-    size = 10;
+    size = 15;
     theblock = [];
     direction = "up";
     prevDirection = "";
